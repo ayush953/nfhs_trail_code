@@ -17,6 +17,7 @@ export class HhcompletionRateComponent {
 
     // for csv download
     cols: any[] = [];
+    roshan:any;
     selectedDatalist: any[] = [];
     exportColumns: any[] = [];
     ngOnInit() {
