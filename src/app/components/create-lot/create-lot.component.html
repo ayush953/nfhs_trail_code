@@ -1,0 +1,78 @@
+<form [formGroup]="lotForm" (ngSubmit)="onSubmit()">
+    <div class="col-12">
+        <div class="card">
+            <h5>Lot Creation</h5>
+            <div class="p-fluid p-formgrid grid">
+                <div class="field col-12 md:col-3">
+                    <label htmlFor="branchName">Branch Name</label>
+                    <p-dropdown [options]="branches" optionLabel="branchName" placeholder="Select a Branch"
+                        [showClear]="true" (onChange)="onBranchSelect($event)"></p-dropdown>
+                </div>
+                <div class="field col-12 md:col-3">
+                    <label htmlFor="centreName">Centre Name</label>
+                    <p-dropdown [options]="centres" optionLabel="centreName" formControlName="centreId"
+                        placeholder="Select a Centre" [showClear]="true"
+                        (onChange)="onCentreSelect($event)"></p-dropdown>
+                </div>
+                <div class="field col-12 md:col-6">
+                    <label htmlFor="processingFactoryName">Factory Name</label>
+                    <p-dropdown [options]="factories" optionLabel="processingFactoryName" formControlName="factoryId"
+                        placeholder="Select a Factory" [showClear]="true"
+                        (onChange)="onFactorySelect($event)"></p-dropdown>
+                </div>
+                <div class="field col-12 md:col-4">
+                    <label htmlFor="cropYear">Crop Year</label>
+                    <input type="text" name="cropYear" formControlName="cropYear" placeholder="Enter Crop Year"
+                        pInputText />
+                </div>
+                <div class="field col-12 md:col-4">
+                    <label htmlFor="variety">Bale Variety</label>
+                    <p-dropdown [options]="baleVarieties" optionLabel="varietyName" formControlName="varietyId"
+                        placeholder="Select a Variety" [showClear]="true"
+                        (onChange)="onBaleVarietySelect($event)"></p-dropdown>
+                </div>
+                <div class="field col-12 md:col-4">
+                    <label htmlFor="heapNo">Heap Number</label>
+                    <input type="text" name="heapNo" formControlName="heapNo" placeholder="Enter Heap Number"
+                        pInputText />
+                </div>
+                <div class="field col-12 md:col-4">
+                    <label htmlFor="lotNo">Lot Number</label>
+                    <input type="text" name="lotNo" formControlName="lotNo" placeholder="Enter Lot Number" pInputText />
+                </div>
+                <div class="field col-12 md:col-4">
+                    <label htmlFor="heapDate">Heap Date</label>
+                    <p-calendar name="heapDate" formControlName="heapDate" [showIcon]="true"></p-calendar>
+                </div>
+                <div class="field col-12 md:col-4">
+                    <label htmlFor="pressRunningFrom">P.R Number Start</label>
+                    <input type="text" name="pressRunningFrom" formControlName="pressRunningFrom"
+                        placeholder="Enter P.R Number Start" pInputText />
+                </div>
+                <div class="field col-12 md:col-3">
+                    <label htmlFor="pressRunningTo">P.R Number End</label>
+                    <input type="text" name="pressRunningTo" formControlName="pressRunningTo"
+                        placeholder="Enter P.R Number End" pInputText />
+                </div>
+                <div class="field col-12 md:col-3">
+                    <label htmlFor="operationName">Operation Name</label>
+                    <input type="text" name="operationName" formControlName="operationName"
+                        placeholder="Enter Operation Name" pInputText />
+                </div>
+                <div class="field col-12 md:col-3">
+                    <label htmlFor="pressMarkNo>">Press Mark Number</label>
+                    <input type="text" name="pressMarkNo" formControlName="pressMarkNo"
+                        placeholder="Enter Press Mark Number" pInputText />
+                </div>
+                <div class="field col-12 md:col-3">
+                    <label htmlFor="pressMachineNo>">Press Machine Number</label>
+                    <input type="text" name="pressMachineNo" formControlName="pressMachineNo"
+                        placeholder="Enter Press Machine Number" pInputText />
+                </div>
+            </div>
+            <div class="field">
+                <p-button label="Submit" type="submit"></p-button>
+            </div>
+        </div>
+    </div>
+</form>

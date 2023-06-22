@@ -1,0 +1,340 @@
+<div class="card">
+    <p-table
+        #dt
+        [value]="datalist"
+        [exportHeader]="'customExportHeader'"
+        exportFilename="hh-completion-rate-memberwise"
+        [columns]="cols"
+        selectionMode="multiple"
+        [(selection)]="selectedDatalist"
+        dataKey="id"
+        [rowHover]="true"
+        [rows]="10"
+        [showCurrentPageReport]="true"
+        [rowsPerPageOptions]="[10, 25, 50]"
+        [paginator]="true"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        [filterDelay]="0"
+        [globalFilterFields]="['state']"
+        styleClass="p-datatable-sm p-datatable-gridlines p-datatable-striped"
+    >
+        <ng-template pTemplate="caption">
+            <div class="table-header" style="font-size: x-large">
+                FC-1 : Household completion rate of {{this.stateName}}
+            </div>
+            <br />
+            <div class="flex">
+                <button
+                    type="button"
+                    pButton
+                    pRipple
+                    icon="pi pi-file"
+                    (click)="dt.exportCSV()"
+                    class="mr-2"
+                    pTooltip="CSV"
+                    tooltipPosition="bottom"
+                ></button>
+                <button
+                    type="button"
+                    pButton
+                    pRipple
+                    icon="pi pi-file-excel"
+                    (click)="exportExcel()"
+                    class="p-button-success mr-2"
+                    pTooltip="XLS"
+                    tooltipPosition="bottom"
+                ></button>
+                <button
+                    type="button"
+                    pButton
+                    pRipple
+                    icon="pi pi-file-pdf"
+                    (click)="exportPdf()"
+                    class="p-button-warning mr-2"
+                    pTooltip="PDF"
+                    tooltipPosition="bottom"
+                ></button>
+                <!-- <button type="button" pButton pRipple icon="pi pi-filter" (click)="dt.exportCSV({ selectionOnly: true })" class="p-button-info ml-auto" pTooltip="Selection Only" tooltipPosition="bottom"></button> -->
+
+                <span class="p-input-icon-left ml-auto">
+                    <i class="pi pi-search"></i>
+                    <input
+                        pInputText
+                        type="text"
+                        (input)="
+                            dt.filterGlobal(
+                                $any($event.target).value,
+                                'contains'
+                            )
+                        "
+                        placeholder="Global Search"
+                    />
+                </span>
+            </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+            <tr styleClass="row-accessories">
+                <th
+                    pSortableColumn="state"
+                    rowspan="2"
+                    style="
+                        text-align: center;
+                        background-color: rgb(245, 241, 241);
+                    "
+                >
+                    <div
+                        class="flex justify-content-between align-items-center"
+                    >
+                        Member
+                        <p-sortIcon field="state"></p-sortIcon>
+                    </div>
+                </th>
+                <th
+                    colspan="9"
+                    class="text-center"
+                    style="
+                        min-width: 7rem;
+                        background-color: rgb(245, 241, 241);
+                    "
+                >
+                    Result of household interview
+                </th>
+                <th
+                    rowspan="2"
+                    pSortableColumn="perSum"
+                    style="
+                        min-width: 10rem;
+                        text-align: center;
+                        background-color: rgb(245, 241, 241);
+                    "
+                >
+                    <div
+                        class="flex justify-content-between align-items-center"
+                    >
+                        Percent
+                        <p-sortIcon field="perSum"></p-sortIcon>
+                    </div>
+                </th>
+                <th
+                    rowspan="2"
+                    pSortableColumn="num"
+                    style="
+                        min-width: 10rem;
+                        text-align: center;
+                        background-color: rgb(245, 241, 241);
+                    "
+                >
+                    <div
+                        class="flex justify-content-between align-items-center"
+                    >
+                        Number
+                        <p-sortIcon field="num"></p-sortIcon>
+                    </div>
+                </th>
+            </tr>
+
+            <tr>
+                <th
+                    pSortableColumn="visit_1"
+                    style="
+                        min-width: 14rem;
+                        text-align: center;
+                        background-color: rgb(245, 241, 241);
+                    "
+                >
+                    <div
+                        class="flex justify-content-between align-items-center"
+                    >
+                        Completed
+                        <p-sortIcon field="visit_1"></p-sortIcon>
+                    </div>
+                </th>
+                <th
+                    pSortableColumn="visit_2"
+                    style="
+                        min-width: 14rem;
+                        text-align: center;
+                        background-color: rgb(245, 241, 241);
+                    "
+                >
+                    <div
+                        class="flex justify-content-between align-items-center"
+                    >
+                        No household member at home or no competent respondent
+                        at home at time of visit
+                        <p-sortIcon field="visit_2"></p-sortIcon>
+                    </div>
+                </th>
+                <th
+                    pSortableColumn="visit_3"
+                    style="
+                        min-width: 10rem;
+                        text-align: center;
+                        background-color: rgb(245, 241, 241);
+                    "
+                >
+                    <div
+                        class="flex justify-content-between align-items-center"
+                    >
+                        Entire household absent for extended period of time
+                        <p-sortIcon field="visit_3"></p-sortIcon>
+                    </div>
+                </th>
+                <th
+                    pSortableColumn="visit_3"
+                    style="
+                        min-width: 10rem;
+                        text-align: center;
+                        background-color: rgb(245, 241, 241);
+                    "
+                >
+                    <div
+                        class="flex justify-content-between align-items-center"
+                    >
+                        Postponed
+                        <p-sortIcon field="visit_3"></p-sortIcon>
+                    </div>
+                </th>
+                <th
+                    pSortableColumn="visit_3"
+                    style="
+                        min-width: 10rem;
+                        text-align: center;
+                        background-color: rgb(245, 241, 241);
+                    "
+                >
+                    <div
+                        class="flex justify-content-between align-items-center"
+                    >
+                        Refused
+                        <p-sortIcon field="visit_3"></p-sortIcon>
+                    </div>
+                </th>
+                <th
+                    pSortableColumn="visit_3"
+                    style="
+                        min-width: 10rem;
+                        text-align: center;
+                        background-color: rgb(245, 241, 241);
+                    "
+                >
+                    <div
+                        class="flex justify-content-between align-items-center"
+                    >
+                        Dwelling vacant or address not a dwelling
+                        <p-sortIcon field="visit_3"></p-sortIcon>
+                    </div>
+                </th>
+                <th
+                    pSortableColumn="visit_3"
+                    style="
+                        min-width: 10rem;
+                        text-align: center;
+                        background-color: rgb(245, 241, 241);
+                    "
+                >
+                    <div
+                        class="flex justify-content-between align-items-center"
+                    >
+                        Dwelling destroyed
+                        <p-sortIcon field="visit_3"></p-sortIcon>
+                    </div>
+                </th>
+                <th
+                    pSortableColumn="visit_3"
+                    style="
+                        min-width: 10rem;
+                        text-align: center;
+                        background-color: rgb(245, 241, 241);
+                    "
+                >
+                    <div
+                        class="flex justify-content-between align-items-center"
+                    >
+                        Dwelling not found
+                        <p-sortIcon field="visit_3"></p-sortIcon>
+                    </div>
+                </th>
+                <th
+                    pSortableColumn="visit_3"
+                    style="
+                        min-width: 10rem;
+                        text-align: center;
+                        background-color: rgb(245, 241, 241);
+                    "
+                >
+                    <div
+                        class="flex justify-content-between align-items-center"
+                    >
+                        Other
+                        <p-sortIcon field="visit_3"></p-sortIcon>
+                    </div>
+                </th>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-datalist>
+            <tr class="p-selectable-row">
+                <td style="text-align: center">
+                    <span class="p-column-title">Team</span>
+                    {{ datalist.member }}
+                </td>
+                <td style="text-align: center">
+                    <span class="p-column-title">visit_1</span>
+
+                    <span class="ml-1 vertical-align-middle">
+                        {{ datalist.completed }}%</span
+                    >
+                </td>
+                <td style="text-align: center">
+                    <span class="p-column-title">visit_2</span>
+
+                    <span class="ml-1 vertical-align-middle">
+                        {{ datalist.noHhMemberAtHomeOrNoRespondentAtHome }}%
+                    </span>
+                </td>
+                <td style="text-align: center">
+                    <span class="p-column-title">visit_3</span>
+                    {{ datalist.entireHhAbsentAtTimeOfVisit }}%
+                </td>
+                <td style="text-align: center">
+                    <span class="p-column-title">Persum</span>
+                    {{ datalist.postponed }}%
+                </td>
+                <td style="text-align: center">
+                    <span class="p-column-title">Num</span>
+                    {{ datalist.refused }}%
+                </td>
+                <td style="text-align: center">
+                    <span class="p-column-title">Num</span>
+                    {{ datalist.dwellingVacantOrAddressNotADwelling }}%
+                </td>
+                <td style="text-align: center">
+                    <span class="p-column-title">Num</span>
+                    {{ datalist.dwellingDestroyed }}%
+                </td>
+                <td style="text-align: center">
+                    <span class="p-column-title">Num</span>
+                    {{ datalist.dwellingNotFound }}%
+                </td>
+                <td style="text-align: center">
+                    <span class="p-column-title">Num</span>
+                    {{ datalist.other }}%
+                </td>
+                <td style="text-align: center">
+                    <span class="p-column-title">Num</span>
+                    {{ datalist.percentVal }}%
+                </td>
+                <td style="text-align: center">
+                    <span class="p-column-title">Num</span>
+                    {{ datalist.numberVal }}
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+            <tr>
+                <td colspan="7">No Data Available</td>
+            </tr>
+        </ng-template>
+    </p-table>
+</div>
+

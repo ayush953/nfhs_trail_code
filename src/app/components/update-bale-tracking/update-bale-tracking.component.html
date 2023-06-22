@@ -1,0 +1,52 @@
+<form *ngIf="showForm">
+    <div class="col-12">
+        <div class="card">
+            <div class="p-fluid p-formgrid grid">
+            </div>
+            <h5>Update Bale Tracking</h5>
+            <div class="p-fluid p-formgrid grid">
+                <div class="field col-12 md:col-4">
+                    <label htmlFor="ubin">UBIN</label>
+                    <input type="text" name="ubin" [(ngModel)]="ubin"  placeholder="Enter UBIN" pInputText />
+                </div>
+                <div class="field col-12 md:col-2" style="margin-top: 26px;">
+                    <p-button (click)="onUbinSumbit()" label="Submit"></p-button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+<!---->
+<!---->
+<form [formGroup]="baleTrackForm" (ngSubmit)="onSubmit()" *ngIf="!showForm">
+    <div class="col-12">
+        <div class="card">
+            <h5>Update Bale Tracking</h5>
+            <div class="p-fluid p-formgrid grid">
+                <div class="field col-12 md:col-3">
+                    <label htmlFor="baleUbin">UBIN</label>
+                    <input type="text" name="baleUbin"  placeholder="Enter UBIN" formControlName="baleUbin"
+                        pInputText />
+                </div>
+                <div class="field col-12 md:col-3">
+                    <label htmlFor="branchName">Branch Name</label>
+                    <p-dropdown [options]="branches" optionLabel="branchName" placeholder="Select a Branch" [showClear]="true"
+                        (onChange)="onBranchSelect($event)"></p-dropdown>
+                </div>
+                <div class="field col-12 md:col-3">
+                    <label htmlFor="warehouseName">Warehouse Name</label>
+                    <p-dropdown [options]="warehouses" optionLabel="warehouseName" placeholder="Select a Warehouse" [showClear]="true" formControlName="location"
+                        (onChange)="onWarehouseSelect($event)" optionValue="warehouseName"></p-dropdown>
+                </div>
+                <div class="field col-12 md:col-3">
+                    <label htmlFor="trackingStatus">Status</label>
+                    <input type="text" name="trackingStatus"  placeholder="Enter Tracking Status" formControlName="trackingStatus"
+                        pInputText />
+                </div>
+            </div>
+            <div class="field">
+                <p-button label="Submit" type="submit"></p-button>
+            </div>
+        </div>
+    </div>
+</form>

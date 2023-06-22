@@ -1,0 +1,60 @@
+<div class="card">
+    <p-table #dt  [exportHeader]="'customExportHeader'" [tableStyle]="{ 'min-width': '50rem' }">
+        <ng-template pTemplate="caption">
+			<div class="table-header">
+				ELIGIBLE WOMEN PER HOUSEHOLD 
+				
+			</div>
+            <div class="flex">
+                <button type="button" pButton pRipple icon="pi pi-file" (click)="dt.exportCSV()" class="mr-2" pTooltip="CSV" tooltipPosition="bottom"></button>
+                <button type="button" pButton pRipple icon="pi pi-file-excel"  class="p-button-success mr-2" pTooltip="XLS" tooltipPosition="bottom"></button>
+                <button type="button" pButton pRipple icon="pi pi-file-pdf"  class="p-button-warning mr-2" pTooltip="PDF" tooltipPosition="bottom"></button>
+                <button type="button" pButton pRipple icon="pi pi-filter" (click)="dt.exportCSV({ selectionOnly: true })" class="p-button-info ml-auto" pTooltip="Selection Only" tooltipPosition="bottom"></button>
+            </div>
+        </ng-template>
+		
+        <ng-template pTemplate="header" >
+			<tr>
+                <th rowspan="2">State</th>
+                <th colspan="3" class="text-center">Urban</th>
+                <th colspan="3" class="text-center">Rural</th>
+              </tr>
+              <tr>
+                <th class="text-center">Number of completed households</th>
+                <th class="text-center">
+                  Number of de facto eligible women in those HHs
+                </th>
+                <th class="text-center">
+                  Mean number of de facto eligible women per HH
+                </th>
+                <th class="text-center">Number of completed households</th>
+                <th class="text-center">
+                  Number of de facto eligible women in those HHs
+                </th>
+                <th class="text-center">
+                  Mean number of de facto eligible women per HH
+                </th>
+              </tr>
+        </ng-template>
+        <ng-template pTemplate="body" >
+            <!-- <tr *ngFor="let data of datalist">
+                <td>{{ data.state }}</td>
+                <td>{{ data.noOfCompletedHhUrban }}</td>
+                <td>
+                  {{ data.noOfDeFactoEligibleWomenInCompletedHhUrban }}
+                </td>
+                <td>
+                  {{ data.meanNoOfDeFactoEligibleWomenPerHhUrban }}
+                </td>
+                <td>{{ data.noOfCompletedHhRural }}</td>
+                <td>
+                  {{ data.noOfDeFactoEligibleWomenInCompletedHhRural }}
+                </td>
+                <td>
+                  {{ data.meanNoOfDeFactoEligibleWomenPerHhRural }}
+                </td>
+              </tr> -->
+        </ng-template>
+    </p-table>
+</div>
+

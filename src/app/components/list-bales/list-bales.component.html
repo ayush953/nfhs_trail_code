@@ -1,0 +1,75 @@
+<form>
+    <div class="col-12">
+        <div class="card">
+            <h5>Lot Creation</h5>
+            <div class="p-fluid p-formgrid grid">
+                <div class="field col-12 md:col-3">
+                    <label htmlFor="branchName">Branch Name</label>
+                    <p-dropdown [options]="branches" optionLabel="branchName" placeholder="Select a Branch"
+                        [showClear]="true" (onChange)="onBranchSelect($event)"></p-dropdown>
+                </div>
+                <div class="field col-12 md:col-3">
+                    <label htmlFor="centreName">Centre Name</label>
+                    <p-dropdown [options]="centres" optionLabel="centreName" placeholder="Select a Centre"
+                        [showClear]="true" (onChange)="onCentreSelect($event)"></p-dropdown>
+                </div>
+                <div class="field col-12 md:col-3">
+                    <label htmlFor="processingFactoryName">Factory Name</label>
+                    <p-dropdown [options]="factories" optionLabel="processingFactoryName" placeholder="Select a Factory"
+                        [showClear]="true" (onChange)="onFactorySelect($event)"></p-dropdown>
+                </div>
+                <div class="field col-12 md:col-3">
+                    <label htmlFor="lotDetailsId">Lot Number</label>
+                    <p-dropdown [options]="lotList" optionLabel="lotNo" placeholder="Select a Lot"
+                        [showClear]="true" (onChange)="onLotSelect($event)"></p-dropdown>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<div class="col-12" *ngIf="showTable">
+    <div class="card">
+        <p-table [value]="balesList" [paginator]="true" [rows]="10" [showCurrentPageReport]="true"
+            [tableStyle]="{ 'min-width': '50rem' }"
+            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+            [rowsPerPageOptions]="[20, 50, 100]">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th pSortableColumn="lotDetails.cropYear" style="width:12%">Crop Year<p-sortIcon
+                            field="lotDetails.cropYear"></p-sortIcon></th>
+                    <th pSortableColumn="lotDetails.lotNo" style="width:12%">Lot Number<p-sortIcon field="lotDetails.lotNo"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="baleNo" style="width:12%">Bale Number<p-sortIcon field="baleNo"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="balePressDate" style="width:12%">Bale Press Date<p-sortIcon
+                            field="balePressDate"></p-sortIcon></th>
+                    <th pSortableColumn="balePressWeight" style="width:12%">Bale Press Weight<p-sortIcon
+                            field="balePressWeight"></p-sortIcon></th>
+                    <th pSortableColumn="status" style="width:12%">Bale Status<p-sortIcon
+                            field="status"></p-sortIcon></th>
+                    <th style="width:12%">Action</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-product>
+                <tr>
+                    <td>{{product.lotDetails.cropYear}}</td>
+                    <td>{{product.lotDetails.lotNo}}</td>
+                    <td>{{product.baleNo}}</td>
+                    <td>{{product.balePressDate | date : 'MM-dd-yyyy'}}</td>
+                    <td>{{product.balePressWeight}}</td>
+                    <td>{{product.status}}</td>
+                    <td>
+                        <p-button pRipple icon="pi pi-pencil" label="View/Edit" (onClick)="onViewEditClick(product)"></p-button>
+                    </td>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="paginatorleft">
+                <!-- <p-button type="button" icon="pi pi-plus" styleClass="p-button-text"></p-button> -->
+            </ng-template>
+            <ng-template pTemplate="paginatorright">
+                <!-- <p-button type="button" icon="pi pi-cloud" styleClass="p-button-text"></p-button> -->
+            </ng-template>
+        </p-table>
+    </div>
+</div>

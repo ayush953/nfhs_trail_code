@@ -1,0 +1,130 @@
+<form [formGroup]="balesCount">
+    <div class="col-12">
+        <div class="card">
+            <div class="p-fluid p-formgrid grid">
+                <div class="field col-12 md:col-4">
+                    <label htmlFor="fullLotNo">Full Lot Number</label>
+                    <input type="text" name="fullLotNo" [value]="fullLotNo" pInputText [disabled]="true" />
+                </div>
+                <div class="field col-12 md:col-3" style="margin-top: 26px;">
+                    <p-button (click)="viewBaleLotDetails()" icon="pi pi-external-link"
+                        label="View Lot Details"></p-button>
+                </div>
+            </div>
+            <h5>Add Bales In Lot</h5>
+            <div class="p-fluid p-formgrid grid">
+                <div class="field col-12 md:col-4">
+                    <label htmlFor="count">Bale Counts</label>
+                    <input type="text" name="count" formControlName="count" placeholder="Enter Number of Bales"
+                        pInputText [disabled]="true" />
+                </div>
+                <div class="field col-12 md:col-2" style="margin-top: 26px;">
+                    <p-button (click)="onSubmit()" label="Submit"></p-button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<form [formGroup]="baleForm" (ngSubmit)="onAllBalesSubmit()" [hidden]="hideBaleForm">
+    <div class="col-12">
+        <div class="card">
+            <h5>Add Bales In Lot</h5>
+            <ng-container *ngFor="let control of  baleForm.controls['bales'].controls ;let i = index;"
+                formArrayName="bales">
+                <div class="p-fluid p-formgrid grid" [formGroupName]="i">
+                    <div class="field col-12 md:col-3">
+                        <label htmlFor="baleNo">Bale Number</label>
+                        <input type="text" name="baleNo" formControlName="baleNo" placeholder="Enter Bale Number"
+                            pInputText />
+                    </div>
+                    <div class="field col-12 md:col-3">
+                        <label htmlFor="ubin">UBIN</label>
+                        <input type="text" name="ubin" formControlName="ubin" placeholder="Enter Ubin" pInputText />
+                    </div>
+                    <div class="field col-12 md:col-3">
+                        <label htmlFor="moisture">Moisture</label>
+                        <input type="text" name="moisture" formControlName="moisture" placeholder="Enter Moisture"
+                            pInputText />
+                    </div>
+                    <div class="field col-12 md:col-3">
+                        <label htmlFor="balePressWeight">Bale Press Weight</label>
+                        <input type="text" name="balePressWeight" formControlName="balePressWeight"
+                            placeholder="Enter Bale Press Weight" pInputText />
+                    </div>
+                </div>
+            </ng-container>
+            <div class="field">
+                <p-button type="submit" label="Submit"></p-button>
+            </div>
+        </div>
+    </div>
+</form>
+
+
+<p-dialog header="Bale Lot Details" [(visible)]="visible" [style]="{ width: '50vw' }" [maximizable]="true">
+    <form>
+        <div class="col-12">
+            <div class="card">
+                <div class="p-fluid p-formgrid grid">
+                    <div class="field col-12 md:col-4">
+                        <label htmlFor="branchName">Branch Name</label>
+                        <input type="text" name="branchName" pInputText [(ngModel)]="baleLot.centreId.branchId.branchName" />
+                    </div>
+                    <div class="field col-12 md:col-4">
+                        <label htmlFor="centreName">Centre Name</label>
+                        <input type="text" name="centreName" pInputText [(ngModel)]="baleLot.centreId.centreName" />
+                    </div>
+                    <div class="field col-12 md:col-4">
+                        <label htmlFor="processingFactoryName">Factory Name</label>
+                        <input type="text" name="factoryId" pInputText [(ngModel)]="baleLot.factoryId.processingFactoryName"/>
+                    </div>
+                    <div class="field col-12 md:col-4">
+                        <label htmlFor="cropYear">Crop Year</label>
+                        <input type="text" name="cropYear" pInputText [(ngModel)]="baleLot.cropYear"/>
+                    </div>
+                    <div class="field col-12 md:col-4">
+                        <label htmlFor="variety">Bale Variety</label>
+                        <input type="text" name="varietyId" pInputText  [(ngModel)]="baleLot.varietyId.varietyName"/>
+                    </div>
+                    <div class="field col-12 md:col-4">
+                        <label htmlFor="heapNo">Heap Number</label>
+                        <input type="text" name="heapNo" pInputText [(ngModel)]="baleLot.heapNo"/>
+                    </div>
+                    <div class="field col-12 md:col-4">
+                        <label htmlFor="lotNo">Lot Number</label>
+                        <input type="text" name="lotNo" pInputText [(ngModel)]="baleLot.lotNo"/>
+                    </div>
+                    <div class="field col-12 md:col-4">
+                        <label htmlFor="heapDate">Heap Date</label>
+                        <p-calendar name="heapDate" [(ngModel)]="baleLot.heapDate"  [showIcon]="true"></p-calendar>
+                    </div>
+                    <div class="field col-12 md:col-4">
+                        <label htmlFor="pressRunningFrom">P.R Number Start</label>
+                        <input type="text" name="pressRunningFrom" pInputText [(ngModel)]="baleLot.pressRunningFrom" />
+                    </div>
+                    <div class="field col-12 md:col-3">
+                        <label htmlFor="pressRunningTo">P.R Number End</label>
+                        <input type="text" name="pressRunningTo" pInputText [(ngModel)]="baleLot.pressRunningTo"/>
+                    </div>
+                    <div class="field col-12 md:col-3">
+                        <label htmlFor="operationName">Operation Name</label>
+                        <input type="text" name="operationName" pInputText [(ngModel)]="baleLot.operationName"/>
+                    </div>
+                    <div class="field col-12 md:col-3">
+                        <label htmlFor="pressMarkNo>">Press Mark Number</label>
+                        <input type="text" name="pressMarkNo" pInputText [(ngModel)]="baleLot.pressMarkNo"/>
+                    </div>
+                    <div class="field col-12 md:col-3">
+                        <label htmlFor="pressMachineNo>">Press Machine Number</label>
+                        <input type="text" name="pressMachineNo" pInputText [(ngModel)]="baleLot.pressMachineNo"/>
+                    </div>
+                    <div class="field col-12 md:col-4">
+                        <label htmlFor="statusUpdateTimestamp">Status Update Timestamp</label>
+                        <p-calendar name="statusUpdateTimestamp" [(ngModel)]="baleLot.statusUpdateTimestamp" [showTime]="true" [showSeconds]="true"  [showIcon]="true"></p-calendar>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</p-dialog>

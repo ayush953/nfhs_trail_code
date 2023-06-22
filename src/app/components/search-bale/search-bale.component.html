@@ -1,0 +1,22 @@
+<form [formGroup]="ubinForm">
+    <div class="col-12">
+        <div class="card">
+            <div class="p-fluid p-formgrid grid">
+            </div>
+            <h5>Search Bale by QR Code For Traceablility</h5>
+            <div class="p-fluid p-formgrid grid">
+                <div class="field col-12 md:col-4">
+                    <label htmlFor="ubin">UBIN</label>
+                    <input type="text" name="ubin" formControlName="ubin" placeholder="Enter UBIN" pInputText />
+                </div>
+                <div class="field col-12 md:col-3" style="margin-top: 26px;">
+                    <p-button (click)="onViewBaleDetails()" label="View Bale Details"></p-button>
+                </div>
+                <div class="field col-12 md:col-3" style="margin-top: 26px;">
+                    <p-button (click)="onViewBaleTracking()" label="View Tracking"></p-button>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+

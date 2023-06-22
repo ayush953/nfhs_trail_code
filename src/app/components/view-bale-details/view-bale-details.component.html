@@ -1,0 +1,99 @@
+<form #BaleForm="ngForm">
+        <div class="col-12">
+            <!-- <div class="card">
+                <h2>Lot Details</h2>
+                <div class="p-fluid p-formgrid grid">
+                    <div class="field col-12 md:col-3">
+                        <label htmlFor="branchName">Branch Name</label>
+                        <input type="text" name="branchName" pInputText [(ngModel)]="bale.lotDetails.centreId.branchId.branchName" />
+                    </div>
+                    <div class="field col-12 md:col-3">
+                        <label htmlFor="centreName">Centre Name</label>
+                        <input type="text" name="centreName" pInputText [(ngModel)]="bale.lotDetails.centreId.centreName" />
+                    </div>
+                    <div class="field col-12 md:col-6">
+                        <label htmlFor="processingFactoryName">Factory Name</label>
+                        <input type="text" name="processingFactoryName" pInputText [(ngModel)]="bale.lotDetails.factoryId.processingFactoryName" />
+                    </div>
+                    <div class="field col-12 md:col-4">
+                        <label htmlFor="cropYear">Crop Year</label>
+                        <input type="text" name="cropYear" pInputText [(ngModel)]="bale.lotDetails.cropYear" />
+                    </div>
+                    <div class="field col-12 md:col-4">
+                        <label htmlFor="varietyName">Bale Variety</label>
+                        <input type="text" name="varietyName" pInputText  [(ngModel)]="bale.lotDetails.varietyId.varietyName" />
+                    </div>
+                    <div class="field col-12 md:col-4">
+                        <label htmlFor="heapNo">Heap Number</label>
+                        <input type="text" name="heapNo" pInputText [(ngModel)]="bale.lotDetails.heapNo" />
+                    </div>
+                    <div class="field col-12 md:col-4">
+                        <label htmlFor="lotNo">Lot Number</label>
+                        <input type="text" name="lotNo" pInputText [(ngModel)]="bale.lotDetails.lotNo" />
+                    </div>
+                    <div class="field col-12 md:col-4">
+                        <label htmlFor="heapDate">Heap Date</label>
+                        <p-calendar name="heapDate" [(ngModel)]="bale.lotDetails.heapDate" [showIcon]="true" ></p-calendar>
+
+                    </div>
+                    <div class="field col-12 md:col-4">
+                        <label htmlFor="pressRunningFrom">P.R Number Start</label>
+                        <input type="text" name="pressRunningFrom" pInputText [(ngModel)]="bale.lotDetails.pressRunningFrom" />
+                    </div>
+                    <div class="field col-12 md:col-3">
+                        <label htmlFor="pressRunningTo">P.R Number End</label>
+                        <input type="text" name="pressRunningTo" pInputText [(ngModel)]="bale.lotDetails.pressRunningTo" />
+                    </div>
+                    <div class="field col-12 md:col-3">
+                        <label htmlFor="operationName">Operation Name</label>
+                        <input type="text" name="operationName" pInputText [(ngModel)]="bale.lotDetails.operationName" />
+                    </div>
+                    <div class="field col-12 md:col-3">
+                        <label htmlFor="pressMarkNo>">Press Mark Number</label>
+                        <input type="text" name="pressMarkNo" pInputText [(ngModel)]="bale.lotDetails.pressMarkNo" />
+                    </div>
+                    <div class="field col-12 md:col-3">
+                        <label htmlFor="pressMachineNo>">Press Machine Number</label>
+                        <input type="text" name="pressMachineNo" pInputText [(ngModel)]="bale.lotDetails.pressMachineNo" />
+                    </div>
+                </div>
+            </div> -->
+            <div class="card">
+                <h2>Bale Details</h2>
+                <div class="p-fluid p-formgrid grid">
+                    <div class="field col-12 md:col-3">
+                        <label htmlFor="baleNo">Bale Number</label>
+                        <input type="text" name="baleNo" pInputText [(ngModel)]="bale.baleNo" />
+                    </div>
+                    <div class="field col-12 md:col-3">
+                        <label htmlFor="moisture">Moisture</label>
+                        <input type="text" name="moisture" pInputText [(ngModel)]="bale.moisture" />
+                    </div>
+                    <div class="field col-12 md:col-3">
+                        <label htmlFor="balePressWeight">Weight</label>
+                        <input type="text" name="balePressWeight" pInputText [(ngModel)]="bale.balePressWeight" />
+                    </div>
+                    <div class="field col-12 md:col-3">
+                        <label htmlFor="status">Registration Status</label>
+                        <input type="text" name="status" pInputText [(ngModel)]="bale.status" />
+                    </div>
+                    <div class="field col-12 md:col-3">
+                        <label htmlFor="balePressDate">Heap Date</label>
+                        <p-calendar name="balePressDate" [(ngModel)]="bale.balePressDate" [showIcon]="true"></p-calendar>
+                    </div>
+                    <div class="field col-12 md:col-3" >
+                    </div>
+                    <div class="field col-12 md:col-3" >
+                    </div>
+                    <div class="field col-12 md:col-3" >
+                    </div>
+                    <div class="field col-12 md:col-3" >
+                        <p-button (click)="onSubmit()" label="Submit" [disabled]="BaleForm.form.pristine"></p-button>
+                    </div>
+                    <div class="field col-12 md:col-3" >
+                        <p-button (click)="onViewLotDetails(bale.lotDetails.lotDetailsId)" label="View Lot Details"></p-button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
