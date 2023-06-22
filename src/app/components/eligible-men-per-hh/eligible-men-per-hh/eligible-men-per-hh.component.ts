@@ -17,8 +17,9 @@ export class EligibleMenPerHhComponent implements OnInit{
   title = 'datatables';            
   dtOptions: any = {};           
   
-  // for csv download
-  cols: any[]=[];                
+  // for csv download     
+  cols: any[]=[];     
+  ayush:any[]=[];           
   selectedDatalist: any[]=[];    
   exportColumns :any[]=[];                           
   ngOnInit() {  
